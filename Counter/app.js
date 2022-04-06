@@ -7,6 +7,7 @@ const decButton = document.getElementById('dec');
 const resetButton = document.getElementById('reset');
 const startButton = document.getElementById('start-btn');
 const gameSetButton = document.getElementById('end');
+const backToMain = document.getElementById('back-main-page');
 
 const inGame = [number, incButton, decButton, resetButton, gameSetButton];
 
@@ -15,6 +16,7 @@ let count = 0;
 function gameStart() {
     resetCount();
     startButton.classList.add('hidden');
+    backToMain.classList.add('hidden');
     for (let i = 0; i < inGame.length; i++) {
         inGame[i].classList.remove('hidden');
     }
@@ -22,6 +24,7 @@ function gameStart() {
 
 function gameSet() {
     startButton.classList.remove('hidden');
+    backToMain.classList.remove('hidden');
     for (let i = 0; i < inGame.length; i++) {
         inGame[i].classList.add('hidden');
     }
