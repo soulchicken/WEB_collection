@@ -5,3 +5,4 @@
 ## CONTENTS
 1. [Color Flipper DOCS](./ColorFlipper/DOCS.md)
 2. [Counter DOCS](./Counter/DOCS.md)
+3. [GiveMe TodoList DOCS](./GiveMeTodolist/DOCS.md)
