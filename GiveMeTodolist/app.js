@@ -1,6 +1,7 @@
 const startBtn = document.getElementById('start-btn');
 const backToMain = document.getElementById('back-main-page');
-const trueFalseCount =document.getElementById('true-false-count');
+const trueFalseCount = document.getElementById('true-false-count');
+const todoContainer = document.getElementById('todo-container');
 
 const xhr = new XMLHttpRequest();
 let dataSet = [];
@@ -13,6 +14,7 @@ xhr.onreadystatechange = () => {
         dataSet = JSON.parse(responseData);
     }
     countTF();
+    makeTodos();
 }
 
 function getStart() {
@@ -32,6 +34,18 @@ function countTF() {
         }
     }
     trueFalseCount.innerHTML = `<h4 style='font-size: 0.5rem;'>From JSON PLACEHOLDER Todo Server</h4><br> 전체 TASK : ${t+f}개 <br> 해결 : ${t}개 <br> 미해결 : ${f}개`;
+}
+
+function makeTodos() {
+    let str;
+    for (let data of dataSet) {
+        str = `${data.id} : ${data.title}`;
+        if (data.completed) {
+            todoContainer.innerHTML += `<div id='completed' style='font-size: 0.3rem'>${str}</div>`;
+        } else {
+            todoContainer.innerHTML += `<div id='notSolved' style='font-size: 0.3rem'>${str}</div>`;
+        }
+    }
 }
 
 startBtn.addEventListener('click', getStart);
