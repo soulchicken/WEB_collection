@@ -3,6 +3,9 @@ const backToMain = document.getElementById('back-main-page');
 const trueFalseCount = document.getElementById('true-false-count');
 const todoContainer = document.getElementById('todo-container');
 
+const clearBtn = document.getElementById('clear-btn');
+const viewAllBtn = document.getElementById('view-all');
+
 const xhr = new XMLHttpRequest();
 let dataSet = [];
 let t = 0;
@@ -33,7 +36,9 @@ function countTF() {
             f++;
         }
     }
-    trueFalseCount.innerHTML = `<h4 style='font-size: 0.5rem;'>From JSON PLACEHOLDER Todo Server</h4><br> 전체 TASK : ${t+f}개 <br> 해결 : ${t}개 <br> 미해결 : ${f}개`;
+    trueFalseCount.innerHTML = `<h4 style='font-size: 0.5rem;'>From JSON PLACEHOLDER Todo Server</h4><br>
+    TASK : ${t+f}개 <br> 
+    COMPLETED : ${t}개 <br> NOT COMPLETED : ${f}개`;
 }
 
 function makeTodos() {
@@ -41,11 +46,28 @@ function makeTodos() {
     for (let data of dataSet) {
         str = `${data.id} : ${data.title}`;
         if (data.completed) {
-            todoContainer.innerHTML += `<div id='completed' style='font-size: 0.3rem'>${str}</div>`;
+            todoContainer.innerHTML += `<div class='completed' style='font-size: 0.3rem'>${str}</div>`;
         } else {
-            todoContainer.innerHTML += `<div id='notSolved' style='font-size: 0.3rem'>${str}</div>`;
+            todoContainer.innerHTML += `<div class='notSolved' style='font-size: 0.3rem'>${str}</div>`;
         }
     }
 }
 
+function clearTodo() {
+    const completedTodo = document.getElementsByClassName('completed');
+    for (let el of completedTodo) {
+        el.classList.add('hidden');
+    }
+}
+
+function viewAllTodo() {
+    const completedTodo = document.getElementsByClassName('completed');
+    for (let el of completedTodo) {
+        el.classList.remove('hidden');
+    }
+}
+
+
 startBtn.addEventListener('click', getStart);
+clearBtn.addEventListener('click',clearTodo);
+viewAllBtn.addEventListener('click', viewAllTodo);

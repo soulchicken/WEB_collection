@@ -1,10 +1,6 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-html, body {
-	overflow-y:scroll;
-}
-
 /* reset.css : 기본 css 스타일 초기화 */
 body {
 margin: 0;
@@ -16,7 +12,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh; /* viewport height 의 60% */
 }
 
 .container {
