@@ -59,3 +59,12 @@ main {
     font-size: 0.7rem;
     padding: 0.2rem 0.5rem; 
 }
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.complete-word {
+    font-weight: 700;
+}

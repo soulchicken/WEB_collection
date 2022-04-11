@@ -2,6 +2,7 @@ const startBtn = document.getElementById('start-btn');
 const backToMain = document.getElementById('back-main-page');
 const trueFalseCount = document.getElementById('true-false-count');
 const todoContainer = document.getElementById('todo-container');
+const setTheTodo = document.getElementById('end');
 
 const clearBtn = document.getElementById('clear-btn');
 const viewAllBtn = document.getElementById('view-all');
@@ -23,6 +24,7 @@ xhr.onreadystatechange = () => {
 function getStart() {
     startBtn.classList.add('hidden');
     backToMain.classList.add('hidden');
+    setTheTodo.classList.remove('hidden');
     xhr.open('GET', "https://jsonplaceholder.typicode.com/todos");
     xhr.send();
 }
@@ -46,23 +48,41 @@ function makeTodos() {
     for (let data of dataSet) {
         str = `${data.id} : ${data.title}`;
         if (data.completed) {
-            todoContainer.innerHTML += `<div class='completed' style='font-size: 0.3rem'>${str}</div>`;
+            todoContainer.innerHTML += `<div>
+                                            <span class='completed' style='font-size: 1rem'>
+                                                ${str}
+                                            </span>
+                                            <span class='complete-word'>
+                                                COMPLETED
+                                            </span>
+                                        <div>`;
         } else {
-            todoContainer.innerHTML += `<div class='notSolved' style='font-size: 0.3rem'>${str}</div>`;
+            todoContainer.innerHTML += `<div class='notSolved' style='font-size: 1rem'>${str}</div>`;
         }
     }
 }
 
 function clearTodo() {
     const completedTodo = document.getElementsByClassName('completed');
+    const completedWords = document.getElementsByClassName('complete-word');
+
     for (let el of completedTodo) {
+        el.classList.add('hidden');
+    }
+
+    for (let el of completedWords) {
         el.classList.add('hidden');
     }
 }
 
 function viewAllTodo() {
     const completedTodo = document.getElementsByClassName('completed');
+    const completedWords = document.getElementsByClassName('complete-word');
+
     for (let el of completedTodo) {
+        el.classList.remove('hidden');
+    }
+    for (let el of completedWords) {
         el.classList.remove('hidden');
     }
 }
